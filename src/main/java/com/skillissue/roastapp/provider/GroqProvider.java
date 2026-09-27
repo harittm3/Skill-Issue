@@ -9,7 +9,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class GroqProvider implements RoastProvider{
+public class GroqProvider implements RoastProvider {
 
     private final GroqProperties groqProperties;
     private final RestClient restclient;
@@ -21,10 +21,10 @@ public class GroqProvider implements RoastProvider{
 
     @Override
     public String generateRoast(String role, Map<String, Integer> ratings, int percentage) throws RoastProviderException {
-        String prompt = "You have to generate a brutal roast based on the role " + role
+        String prompt = "You have to generate a witty roast based on the role " + role
                 + " the user wants a job for. Their percentage chance of being hired is " + percentage
                 + "%. Here are the subcategories they rated themselves on a scale of 1 to 10: " + ratings
-                + ". Roast them hard and keep it between 100-150 words.";
+                + ". Roast them and keep it between 100-150 words.";
 
         GroqMessage message = new GroqMessage("user", prompt);
 
