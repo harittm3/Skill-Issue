@@ -24,7 +24,7 @@ public class GroqProvider implements RoastProvider {
         String prompt = "You have to generate a witty roast based on the role " + role
                 + " the user wants a job for. Their percentage chance of being hired is " + percentage
                 + "%. Here are the subcategories they rated themselves on a scale of 1 to 10: " + ratings
-                + ". Roast them and keep it between 100-150 words.";
+                + ". Roast them and keep it between 80-100 words.";
 
         GroqMessage message = new GroqMessage("user", prompt);
 

@@ -26,12 +26,17 @@ public class RoastService {
 
     public String generateRoast(String role, Map<String, Integer> ratings, int percentage) {
         try {
-            return groqProvider.generateRoast(role, ratings, percentage);
+            String roast = groqProvider.generateRoast(role, ratings, percentage);
+            log.info("Roast generated successfully via Groq for role: {}", role);
+            return roast;
         } catch (RoastProviderException e) {
-            try{
-                return geminiProvider.generateRoast(role, ratings, percentage);
-            } catch (RoastProviderException e1){
-                log.error("Gemini API failed, falling back to canned", e1);
+            log.warn("Groq failed for role: {}, falling back to Gemini", role, e);
+            try {
+                String roast = geminiProvider.generateRoast(role, ratings, percentage);
+                log.info("Roast generated successfully via Gemini for role: {}", role);
+                return roast;
+            } catch (RoastProviderException e1) {
+                log.warn("Gemini also failed for role: {}, falling back to canned roast", role, e1);
                 return cannedProvider.generateRoast(role, ratings, percentage);
             }
         }

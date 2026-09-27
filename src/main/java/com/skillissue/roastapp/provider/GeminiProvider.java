@@ -25,7 +25,7 @@ public class GeminiProvider implements RoastProvider {
         String prompt = "You have to generate a brutal roast based on the role " + role
                 + " the user wants a job for. Their percentage chance of being hired is " + percentage
                 + "%. Here are the subcategories they rated themselves on a scale of 1 to 10: " + ratings
-                + ". Roast them hard and keep it between 100-150 words.";
+                + ". Roast them hard and keep it between 80-100 words.";
 
         GeminiPart part = new GeminiPart(prompt);
         GeminiContent content = new GeminiContent("user", List.of(part));
