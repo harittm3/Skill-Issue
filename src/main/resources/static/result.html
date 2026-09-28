@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your result — Skill Issue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/result.css">
+  <link rel="icon" type="image/png" href="images/emoji-beg.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html"><span>Skill</span> Issue</a>
+      <nav aria-label="Main"><a href="index.html#roles">Roles</a><a href="index.html#how">How it works</a></nav>
+    </div>
+  </header>
+
+  <main class="result wrap">
+    <h1>Here's the damage</h1>
+
+    <div class="score-header">
+      <section class="score" aria-labelledby="score-title">
+        <h2 class="visually-hidden" id="score-title">Chance of landing the job</h2>
+        <p class="score__number" id="score-number">--%</p>
+        <div class="hp__label"><span>Chance of landing the job</span><span id="role-badge">Role</span></div>
+        <div class="hp" id="score-hp" data-tier="mid" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" aria-label="0 percent"><div class="hp__fill" id="score-fill" style="--value: 0%"></div></div>
+      </section>
+      <div class="score-emoji-wrap">
+        <img src="images/emoji-beg.png" alt="Begging for a job" id="beg-emoji" class="score-emoji">
+      </div>
+    </div>
+
+    <section class="roast" aria-labelledby="roast-title">
+      <div class="panel">
+        <h2 id="roast-title">The roast</h2>
+        <p id="roast-text">Your roast will show up here once the backend responds.</p>
+      </div>
+    </section>
+
+    <section aria-labelledby="breakdown-title">
+      <h2 id="breakdown-title">Where you lost points</h2>
+      <div class="breakdown" id="breakdown-container">
+        <div class="panel panel--flat">
+          <h3>Subcategory 1</h3><p class="muted">Awaiting backend response.</p>
+          <div class="hp" data-tier="low"><div class="hp__fill" style="--value: 0%"></div></div>
+        </div>
+        <div class="panel panel--flat">
+          <h3>Subcategory 2</h3><p class="muted">Awaiting backend response.</p>
+          <div class="hp" data-tier="mid"><div class="hp__fill" style="--value: 0%"></div></div>
+        </div>
+        <div class="panel panel--flat">
+          <h3>Subcategory 3</h3><p class="muted">Awaiting backend response.</p>
+          <div class="hp" data-tier="high"><div class="hp__fill" style="--value: 0%"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="result-actions">
+      <a class="btn" href="index.html">Choose another role</a>
+    </div>
+  </main>
+  <script src="js/result.js"></script>
+</body>
+</html>

@@ -25,6 +25,18 @@ public class RateLimitFilter implements Filter {
         HttpServletRequest httpRequest = (HttpServletRequest) request;
         HttpServletResponse httpResponse = (HttpServletResponse) response;
 
+        String path = httpRequest.getRequestURI();
+        String method = httpRequest.getMethod();
+
+        // Apply rate limiting ONLY to POST /api/roast (or /api/*)
+        boolean isApiRoast = "POST".equalsIgnoreCase(method) &&
+                (path.equals("/api/roast") || path.endsWith("/api/roast") || path.startsWith("/api/"));
+
+        if (!isApiRoast) {
+            chain.doFilter(request, response);
+            return;
+        }
+
         String clientIp = httpRequest.getRemoteAddr();
 
         RateLimiter rateLimiter = rateLimiterRegistry.rateLimiter(clientIp);
@@ -33,7 +45,8 @@ public class RateLimitFilter implements Filter {
             chain.doFilter(request, response);
         } else {
             httpResponse.setStatus(429); // 429 Too Many Requests
-            httpResponse.getWriter().write("Too many requests. Please try again later.");
+            httpResponse.setContentType("application/json");
+            httpResponse.getWriter().write("{\"error\": \"Too many requests. Please try again later.\"}");
         }
     }
 }

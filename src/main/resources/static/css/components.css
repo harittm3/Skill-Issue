@@ -1,0 +1,56 @@
+/* components.css — reusable pieces: header, buttons, panels, form controls, health bar. */
+
+/* Site header */
+.site-header { padding-block: 3.25rem; }
+.site-header .wrap { display: flex; justify-content: space-between; align-items: center; gap: 1rem; }
+.logo {
+  font-family: var(--font-display); font-size: var(--step-1);
+  text-decoration: none; letter-spacing: 0.04em;
+}
+.logo span { background: var(--hit); padding: 0 0.25em; border: var(--line); }
+.site-header nav a { margin-left: 1.25rem; font-weight: 700; }
+
+/* Buttons */
+.btn {
+  display: inline-block; font: var(--step-0)/1 var(--font-display);
+  font-size: 1.15rem; letter-spacing: 0.05em;
+  padding: 0.85em 1.4em; border: var(--line); background: var(--hurt); color: #fff;
+  text-decoration: none; cursor: pointer; box-shadow: var(--shadow);
+  transition: transform 0.12s, box-shadow 0.12s;
+}
+.btn:hover { transform: translate(2px, 2px); box-shadow: 3px 3px 0 var(--ink); }
+.btn:active { transform: translate(5px, 5px); box-shadow: 0 0 0 var(--ink); }
+.btn--quiet { background: var(--panel); color: var(--ink); }
+
+/* Panel */
+.panel { background: var(--panel); border: var(--line); box-shadow: var(--shadow); padding: 1.5rem; }
+.panel--flat { box-shadow: none; }
+
+/* Forms */
+.field { margin-bottom: 1.25rem; }
+.field label, .field legend { display: block; font-weight: 700; margin-bottom: 0.35rem; padding: 0; }
+.field .hint { display: block; font-size: var(--step--1); color: var(--ink-soft); font-weight: 400; }
+.field input[type="text"],
+.field input[type="number"],
+.field select,
+.field textarea {
+  width: 100%; font: inherit; color: inherit; background: #fff;
+  border: var(--line); padding: 0.7em 0.8em; border-radius: 0;
+}
+.field textarea { min-height: 6rem; resize: vertical; }
+.field input:focus, .field select:focus, .field textarea:focus { background: #fffbe0; }
+.field--check label { display: flex; gap: 0.6rem; align-items: center; font-weight: 500; }
+.field--check input { width: 1.25rem; height: 1.25rem; accent-color: var(--ink); }
+fieldset.field { border: 0; padding: 0; margin-inline: 0; min-width: 0; }
+
+/* Health bar — the score, drawn like a boss fight */
+.hp { border: var(--line); background: #fff; height: 3rem; position: relative; overflow: hidden; }
+.hp__fill {
+  height: 100%; width: var(--value, 0%); background: var(--heal);
+  border-right: var(--line);
+  animation: hp-fill 1.4s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.hp[data-tier="low"] .hp__fill { background: var(--hurt); }
+.hp[data-tier="mid"] .hp__fill { background: var(--hit); }
+@keyframes hp-fill { from { width: 0; } }
+.hp__label { display: flex; justify-content: space-between; font-weight: 700; margin-bottom: 0.4rem; }

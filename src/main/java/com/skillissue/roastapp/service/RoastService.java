@@ -3,7 +3,6 @@ package com.skillissue.roastapp.service;
 import com.skillissue.roastapp.provider.CannedProvider;
 import com.skillissue.roastapp.provider.GeminiProvider;
 import com.skillissue.roastapp.provider.GroqProvider;
-import com.skillissue.roastapp.provider.RoastProviderException;
 import org.springframework.stereotype.Service;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,15 +28,20 @@ public class RoastService {
             String roast = groqProvider.generateRoast(role, ratings, percentage);
             log.info("Roast generated successfully via Groq for role: {}", role);
             return roast;
-        } catch (RoastProviderException e) {
-            log.warn("Groq failed for role: {}, falling back to Gemini", role, e);
+        } catch (Exception e) {
+            log.warn("Groq failed for role: {}, falling back to Gemini. Reason: {}", role, e.getMessage());
             try {
                 String roast = geminiProvider.generateRoast(role, ratings, percentage);
                 log.info("Roast generated successfully via Gemini for role: {}", role);
                 return roast;
-            } catch (RoastProviderException e1) {
-                log.warn("Gemini also failed for role: {}, falling back to canned roast", role, e1);
-                return cannedProvider.generateRoast(role, ratings, percentage);
+            } catch (Exception e1) {
+                log.warn("Gemini also failed for role: {}, falling back to canned roast. Reason: {}", role, e1.getMessage());
+                try {
+                    return cannedProvider.generateRoast(role, ratings, percentage);
+                } catch (Exception e2) {
+                    log.error("CannedProvider also failed for role: {}. This should never happen.", role, e2);
+                    return "Your skills are so bad even our roast generator gave up. Skill issue detected.";
+                }
             }
         }
     }

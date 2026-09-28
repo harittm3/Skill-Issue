@@ -4,6 +4,7 @@ import com.skillissue.roastapp.exception.InvalidRoleException;
 import com.skillissue.roastapp.model.RoastRequest;
 import com.skillissue.roastapp.model.RoastResponse;
 import com.skillissue.roastapp.model.Role;
+import com.skillissue.roastapp.model.Subcategory;
 import com.skillissue.roastapp.service.RoastService;
 import com.skillissue.roastapp.service.ScoringService;
 import jakarta.validation.Valid;
@@ -18,11 +19,11 @@ import java.util.Map;
 @RequestMapping("/api")
 public class RoastController {
 
-    private final Map<String , Role> roles;
+    private final Map<String, Role> roles;
     private final ScoringService scoringService;
     private final RoastService roastService;
 
-    public RoastController(Map<String ,Role> roles ,ScoringService scoringService, RoastService roastService){
+    public RoastController(Map<String, Role> roles, ScoringService scoringService, RoastService roastService) {
         this.roles = roles;
         this.scoringService = scoringService;
         this.roastService = roastService;
@@ -30,15 +31,33 @@ public class RoastController {
 
     @PostMapping("/roast")
     public RoastResponse roast(@Valid @RequestBody RoastRequest request) {
+        if (request.role() == null || request.role().isBlank()) {
+            throw new InvalidRoleException("Role is required");
+        }
+
         Role role = roles.get(request.role());
         if (role == null) {
-            throw new InvalidRoleException("Invalid input");
+            throw new InvalidRoleException("Unknown role: \"" + request.role() + "\". Valid roles are: SDE, Data Analyst, Full Stack Engineer, AI Engineer, ML Engineer, Cloud Engineer");
+        }
+
+        if (request.ratings() == null || request.ratings().isEmpty()) {
+            throw new IllegalArgumentException("Ratings must not be empty");
+        }
+
+        for (Subcategory sub : role.subcategories()) {
+            Integer rating = request.ratings().get(sub.name());
+            if (rating == null) {
+                throw new IllegalArgumentException("Missing rating for subcategory: \"" + sub.name() + "\"");
+            }
+            if (rating < 1 || rating > 10) {
+                throw new IllegalArgumentException("Rating for \"" + sub.name() + "\" must be between 1 and 10, got: " + rating);
+            }
         }
 
         int percentage = scoringService.calculateScore(role, request.ratings());
 
         String roast = roastService.generateRoast(role.name(), request.ratings(), percentage);
 
-        return new RoastResponse(percentage, roast);
+        return new RoastResponse(percentage, roast, role.name(), request.ratings());
     }
 }

@@ -41,6 +41,19 @@ public class GeminiProvider implements RoastProvider {
                     .retrieve()
                     .body(GeminiResponse.class);
 
+            if (response == null
+                    || response.candidates() == null
+                    || response.candidates().isEmpty()
+                    || response.candidates().get(0) == null
+                    || response.candidates().get(0).content() == null
+                    || response.candidates().get(0).content().parts() == null
+                    || response.candidates().get(0).content().parts().isEmpty()
+                    || response.candidates().get(0).content().parts().get(0) == null
+                    || response.candidates().get(0).content().parts().get(0).text() == null
+                    || response.candidates().get(0).content().parts().get(0).text().isBlank()) {
+                throw new RoastProviderException("Gemini returned an empty or filtered response");
+            }
+
             return response.candidates().get(0).content().parts().get(0).text();
 
         } catch (RestClientException e) {

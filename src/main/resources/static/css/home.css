@@ -1,0 +1,28 @@
+/* home.css — index.html only */
+.hero { padding-block: 3rem 2rem; }
+.hero h1 {
+  max-width: none;
+  white-space: nowrap;
+  font-size: clamp(1.4rem, 6.2vw, var(--step-4));
+}
+.hero h1 mark { background: var(--hit); color: inherit; padding: 0 0.1em; }
+.hero p { font-size: var(--step-1); }
+
+.roles { padding-block: 2rem 4rem; }
+.role-grid {
+  display: grid; gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+  list-style: none; padding: 0; margin: 1.5rem 0 0;
+}
+.role-card {
+  display: block; height: 100%; text-decoration: none; padding: 1.25rem;
+  background: var(--panel); border: var(--line); box-shadow: var(--shadow);
+  transition: transform 0.12s, box-shadow 0.12s, background 0.12s;
+}
+.role-card:hover, .role-card:focus-visible { background: var(--hit); transform: translate(-2px, -2px); box-shadow: 7px 7px 0 var(--ink); }
+.role-card p { margin: 0; font-size: var(--step--1); color: var(--ink-soft); }
+.role-card:hover p, .role-card:focus-visible p { color: var(--ink); }
+
+.how { padding-block: 2rem 4rem; border-top: var(--line); }
+.how ol { padding-left: 1.25rem; max-width: 50ch; }
+.how li { margin-bottom: 0.5rem; }

@@ -38,6 +38,16 @@ public class GroqProvider implements RoastProvider {
                     .retrieve()
                     .body(GroqResponse.class);
 
+            if (response == null
+                    || response.choices() == null
+                    || response.choices().isEmpty()
+                    || response.choices().get(0) == null
+                    || response.choices().get(0).message() == null
+                    || response.choices().get(0).message().content() == null
+                    || response.choices().get(0).message().content().isBlank()) {
+                throw new RoastProviderException("Groq returned an empty or filtered response");
+            }
+
             return response.choices().get(0).message().content();
 
         } catch (RestClientException e) {

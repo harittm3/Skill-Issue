@@ -1,0 +1,52 @@
+/* result.css — result.html only */
+.result { padding-block: 1rem 4rem; }
+.result h1 { font-size: var(--step-3); }
+
+.score-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+.score { flex: 1; margin-bottom: 0; }
+.score__number { font-family: var(--font-display); font-size: var(--step-4); line-height: 1; letter-spacing: 0.03em; margin: 0 0 0.75rem; }
+
+.score-emoji-wrap {
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.score-emoji {
+  width: 140px;
+  height: 140px;
+  object-fit: contain;
+  filter: drop-shadow(4px 4px 0 var(--ink));
+  animation: beg-float 3s ease-in-out infinite alternate;
+}
+@keyframes beg-float {
+  from { transform: translateY(0); }
+  to { transform: translateY(-8px); }
+}
+
+@media (max-width: 600px) {
+  .score-header {
+    flex-direction: column-reverse;
+    align-items: center;
+    gap: 1rem;
+  }
+  .score-emoji {
+    width: 110px;
+    height: 110px;
+  }
+}
+
+.roast { margin-bottom: 2.5rem; }
+.roast p { font-size: var(--step-1); }
+
+.breakdown { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-bottom: 2.5rem; }
+.breakdown h3 { margin-bottom: 0.25rem; }
+.breakdown .hp { height: 1.5rem; margin-top: 0.5rem; }
+
+.result-actions { display: flex; gap: 1rem; flex-wrap: wrap; }

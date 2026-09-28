@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Your profile — Skill Issue</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bangers&family=Comic+Neue:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/components.css">
+  <link rel="stylesheet" href="css/form.css">
+  <link rel="icon" type="image/png" href="images/emoji-beg.png">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="logo" href="index.html"><span>Skill</span> Issue</a>
+      <nav aria-label="Main"><a href="index.html#roles">Roles</a><a href="index.html#how">How it works</a></nav>
+    </div>
+  </header>
+
+  <main class="form-shell wrap">
+    <h1>Rate your skill level</h1>
+    <p class="form-subtitle">Slide each bar from 1 to 10 based on your real understanding. The roast will know if you're capping.</p>
+
+    <ul class="role-tabs" aria-label="Choose a role">
+      <li><a href="#sde">SDE</a></li>
+      <li><a href="#data-analyst">Data Analyst</a></li>
+      <li><a href="#fullstack">Full Stack Engineer</a></li>
+      <li><a href="#ai-engineer">AI Engineer</a></li>
+      <li><a href="#ml-engineer">ML Engineer</a></li>
+      <li><a href="#cloud-engineer">Cloud Engineer</a></li>
+    </ul>
+
+    <p class="pick-hint">Choose a role above to rate your subcategories.</p>
+
+    <!-- Form submits to result.html (or point action to /api/roast for Spring Boot backend) -->
+    <form id="roast-form" action="result.html" method="get">
+      <input type="hidden" name="role" id="selected-role" value="SDE">
+
+      <!-- 1. SDE -->
+      <section class="role-fields panel" id="sde" data-role-name="SDE">
+        <div class="role-header">
+          <h2>SDE</h2>
+          <p>Rate your proficiency across core software engineering fundamentals (1 to 10):</p>
+        </div>
+        <div class="slider-group">
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="sde-dsa">Data Structures</label>
+              <div class="slider-badge"><output for="sde-dsa">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="sde-dsa" name="Data Structures" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Arrays scare me)</span><span>5 (LeetCode Medium)</span><span>10 (Competitive Grandmaster)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="sde-lang">Programming Languages</label>
+              <div class="slider-badge"><output for="sde-lang">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="sde-lang" name="Programming Languages" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Syntax errors galore)</span><span>5 (Idiomatic & clean)</span><span>10 (Compiler contributor)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="sde-core">Core Computer Science</label>
+              <div class="slider-badge"><output for="sde-core">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="sde-core" name="Core Computer Science" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (What is an OS?)</span><span>5 (Threads, memory & protocols)</span><span>10 (Kernels in my sleep)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="sde-sys">System Design</label>
+              <div class="slider-badge"><output for="sde-sys">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="sde-sys" name="System Design" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Everything in localhost)</span><span>5 (Microservices & caching)</span><span>10 (Global scale 99.999%)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="sde-debug">Debugging</label>
+              <div class="slider-badge"><output for="sde-debug">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="sde-debug" name="Debugging" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (print("here 1"))</span><span>5 (gdb / breakpoint ninja)</span><span>10 (Resolves heisenbugs in minutes)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 2. DATA ANALYST -->
+      <section class="role-fields panel" id="data-analyst" data-role-name="Data Analyst">
+        <div class="role-header">
+          <h2>Data Analyst</h2>
+          <p>Rate your proficiency across data analytics and visualization tools (1 to 10):</p>
+        </div>
+        <div class="slider-group">
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="da-sql">SQL</label>
+              <div class="slider-badge"><output for="da-sql">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="da-sql" name="SQL" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (SELECT * FROM table)</span><span>5 (Window funcs & CTEs)</span><span>10 (Query optimizer whisperer)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="da-sheets">Excel / Sheets</label>
+              <div class="slider-badge"><output for="da-sheets">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="da-sheets" name="Excel/ Sheets" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Basic =SUM)</span><span>5 (XLOOKUP & pivot tables)</span><span>10 (VBA macros & financial models)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="da-py">Python</label>
+              <div class="slider-badge"><output for="da-py">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="da-py" name="Python" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Copy-pasting snippets)</span><span>5 (Pandas data cleaning)</span><span>10 (Automated ETL pipelines)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="da-stats">Statistics</label>
+              <div class="slider-badge"><output for="da-stats">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="da-stats" name="Statistics" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Mean, median, mode)</span><span>5 (Hypothesis & A/B testing)</span><span>10 (Bayesian inference master)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="da-bi">Power BI / Tableau</label>
+              <div class="slider-badge"><output for="da-bi">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="da-bi" name="Power BI/ Tableau" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Default bar chart)</span><span>5 (Interactive dashboards)</span><span>10 (Enterprise DAX wizard)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 3. FULL STACK ENGINEER -->
+      <section class="role-fields panel" id="fullstack" data-role-name="Full Stack Engineer">
+        <div class="role-header">
+          <h2>Full Stack Engineer</h2>
+          <p>Rate your proficiency across both ends of the web stack (1 to 10):</p>
+        </div>
+        <div class="slider-group">
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="fs-be">Backend</label>
+              <div class="slider-badge"><output for="fs-be">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="fs-be" name="Backend" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Simple Express / Flask)</span><span>5 (Robust REST & Auth)</span><span>10 (High throughput microservices)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="fs-fe">Frontend</label>
+              <div class="slider-badge"><output for="fs-fe">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="fs-fe" name="Frontend" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Broken responsive layout)</span><span>5 (React / modern state)</span><span>10 (Pixel-perfect CWV 100)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="fs-db">Databases</label>
+              <div class="slider-badge"><output for="fs-db">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="fs-db" name="Databases" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Single table SQLite)</span><span>5 (Relational schemas & indexes)</span><span>10 (Replication, sharding & tuning)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="fs-api">APIs Design</label>
+              <div class="slider-badge"><output for="fs-api">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="fs-api" name="APIs Design" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Random HTTP verbs)</span><span>5 (RESTful standards & docs)</span><span>10 (gRPC, GraphQL & SDKs)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="fs-cloud">Cloud Deployment</label>
+              <div class="slider-badge"><output for="fs-cloud">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="fs-cloud" name="Cloud Deployment" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (FTP upload to host)</span><span>5 (Docker & cloud VMs)</span><span>10 (Automated GitOps & serverless)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 4. AI ENGINEER -->
+      <section class="role-fields panel" id="ai-engineer" data-role-name="AI Engineer">
+        <div class="role-header">
+          <h2>AI Engineer</h2>
+          <p>Rate your proficiency across modern generative AI stack (1 to 10):</p>
+        </div>
+        <div class="slider-group">
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ai-py">Python AI</label>
+              <div class="slider-badge"><output for="ai-py">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ai-py" name="Python AI" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (pip install fails)</span><span>5 (Async SDKs & tokenizers)</span><span>10 (Custom CUDA / Triton kernels)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ai-llm">LLM</label>
+              <div class="slider-badge"><output for="ai-llm">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ai-llm" name="LLM" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Used ChatGPT web UI)</span><span>5 (API function calling)</span><span>10 (Fine-tuning & LoRA mastery)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ai-vdb">Vector DB</label>
+              <div class="slider-badge"><output for="ai-vdb">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ai-vdb" name="Vector DB" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (What is an embedding?)</span><span>5 (Pinecone / Chroma basics)</span><span>10 (HNSW tuning & hybrid search)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ai-rag">RAG Framework</label>
+              <div class="slider-badge"><output for="ai-rag">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ai-rag" name="RAG Framework" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Naive context stuffing)</span><span>5 (LangChain / LlamaIndex)</span><span>10 (Re-ranking & multi-agent RAG)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ai-prompt">Prompt Engineering</label>
+              <div class="slider-badge"><output for="ai-prompt">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ai-prompt" name="Prompt Engineering" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 ("act like a programmer")</span><span>5 (Few-shot & Chain of Thought)</span><span>10 (DSPy & programmatic evals)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 5. ML ENGINEER -->
+      <section class="role-fields panel" id="ml-engineer" data-role-name="ML Engineer">
+        <div class="role-header">
+          <h2>ML Engineer</h2>
+          <p>Rate your proficiency in classical & deep machine learning (1 to 10):</p>
+        </div>
+        <div class="slider-group">
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ml-py">Python ML</label>
+              <div class="slider-badge"><output for="ml-py">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ml-py" name="Python ML" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Importing blindly)</span><span>5 (Vectorized algorithms)</span><span>10 (High performance tensor compute)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ml-sklearn">Scikit Learn</label>
+              <div class="slider-badge"><output for="ml-sklearn">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ml-sklearn" name="Scikit Learn" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (model.fit(X, y))</span><span>5 (Cross-validation & Pipelines)</span><span>10 (Custom estimators & ensembles)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ml-torch">PyTorch / TensorFlow</label>
+              <div class="slider-badge"><output for="ml-torch">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ml-torch" name="PyTorch/ Tensorflow" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Copying model architectures)</span><span>5 (Custom loss & training loops)</span><span>10 (Distributed training & ONNX export)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ml-pandas">Pandas / Numpy</label>
+              <div class="slider-badge"><output for="ml-pandas">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ml-pandas" name="Pandas/ Numpy" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Looping through rows)</span><span>5 (Broadcasting & groupby)</span><span>10 (Zero-copy memory layouts)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ml-ops">MLOps</label>
+              <div class="slider-badge"><output for="ml-ops">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ml-ops" name="MLOps" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Saved model to desktop)</span><span>5 (MLflow & Dockerized inference)</span><span>10 (KubeFlow, drift detection & CI/CD)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 6. CLOUD ENGINEER -->
+      <section class="role-fields panel" id="cloud-engineer" data-role-name="Cloud Engineer">
+        <div class="role-header">
+          <h2>Cloud Engineer</h2>
+          <p>Rate your proficiency in cloud infrastructure, containers and networking (1 to 10):</p>
+        </div>
+        <div class="slider-group">
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ce-platforms">Cloud Platforms</label>
+              <div class="slider-badge"><output for="ce-platforms">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ce-platforms" name="Cloud Platforms" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Clicking in AWS console)</span><span>5 (IAM, VPC, S3 & EC2 architecture)</span><span>10 (Multi-cloud Terraform master)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ce-net">Networking</label>
+              <div class="slider-badge"><output for="ce-net">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ce-net" name="Networking" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (What is a subnet?)</span><span>5 (DNS, routing, load balancers)</span><span>10 (BGP, peering & zero-trust VPCs)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ce-containers">Containers</label>
+              <div class="slider-badge"><output for="ce-containers">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ce-containers" name="Containers" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (docker run hello-world)</span><span>5 (Multi-stage Dockerfiles & Compose)</span><span>10 (Kubernetes cluster administrator)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ce-cicd">CI/CD Automation</label>
+              <div class="slider-badge"><output for="ce-cicd">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ce-cicd" name="CI/CD Automation" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Deploy by SSH)</span><span>5 (GitHub Actions / GitLab CI)</span><span>10 (Canary releases & automated rollback)</span></div>
+          </div>
+
+          <div class="slider-card">
+            <div class="slider-header">
+              <label for="ce-linux">Linux</label>
+              <div class="slider-badge"><output for="ce-linux">5</output><span>/ 10</span></div>
+            </div>
+            <input type="range" class="comic-slider" id="ce-linux" name="Linux" min="1" max="10" step="1" value="5">
+            <div class="slider-scale"><span>1 (Afraid of terminal)</span><span>5 (Bash scripting & systemd)</span><span>10 (Kernel tuning & eBPF tracing)</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div id="form-error" class="form-error" style="display: none;" role="alert"></div>
+
+      <div class="form-actions">
+        <button class="btn" id="roast-btn" type="submit">Roast me</button>
+        <a class="btn btn--quiet" href="index.html">Back</a>
+      </div>
+    </form>
+  </main>
+
+  <script>
+    // Live slider output updates
+    document.querySelectorAll('.slider-card').forEach(card => {
+      const slider = card.querySelector('input[type="range"]');
+      const output = card.querySelector('output');
+      if (slider && output) {
+        slider.addEventListener('input', () => {
+          output.textContent = slider.value;
+        });
+      }
+    });
+
+    // Synchronize active role and disable inactive fields so only the chosen role submits
+    const roleSections = document.querySelectorAll('.role-fields');
+    const selectedRoleInput = document.getElementById('selected-role');
+    const form = document.getElementById('roast-form');
+    const roastBtn = document.getElementById('roast-btn');
+    const formError = document.getElementById('form-error');
+
+    function syncActiveRole() {
+      const hash = window.location.hash.replace('#', '') || 'sde';
+      let matched = false;
+
+      roleSections.forEach(section => {
+        const isMatch = section.id === hash;
+        if (isMatch) matched = true;
+        // Enable inputs only for active section
+        section.querySelectorAll('input').forEach(input => {
+          input.disabled = !isMatch;
+        });
+        if (isMatch) {
+          selectedRoleInput.value = section.dataset.roleName || section.id;
+        }
+      });
+
+      if (!matched && roleSections.length > 0) {
+        // default to first role
+        window.location.hash = 'sde';
+      }
+    }
+
+    window.addEventListener('hashchange', syncActiveRole);
+    syncActiveRole();
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      if (formError) {
+        formError.style.display = 'none';
+        formError.textContent = '';
+      }
+
+      const role = selectedRoleInput.value;
+      const ratings = {};
+      const inputs = form.querySelectorAll('input[type="range"]:not([disabled])');
+      inputs.forEach(input => {
+        ratings[input.name] = parseInt(input.value, 10);
+      });
+
+      const payload = {
+        role: role,
+        ratings: ratings
+      };
+
+      const originalBtnText = roastBtn.textContent;
+      roastBtn.disabled = true;
+      roastBtn.textContent = 'Roasting...';
+
+      try {
+        const response = await fetch('/api/roast', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          sessionStorage.setItem('roastResult', JSON.stringify(data));
+          window.location.href = 'result.html';
+          return;
+        }
+
+        const status = response.status;
+        let errorMessage = 'An error occurred while generating your roast.';
+        try {
+          const text = await response.text();
+          if (text) {
+            try {
+              const errObj = JSON.parse(text);
+              if (errObj && errObj.error) errorMessage = errObj.error;
+            } catch (_) {
+              errorMessage = text;
+            }
+          }
+        } catch (_) { /* ignore read errors */ }
+
+        if (status === 429) {
+          showError("You're getting roasted too fast! Please wait before trying again.");
+        } else if (status === 400) {
+          showError("Unable to roast: " + errorMessage);
+        } else if (status >= 500) {
+          showError("Server error: " + errorMessage);
+        } else {
+          showError(errorMessage);
+        }
+      } catch (err) {
+        showError("Network error. Please check your connection and try again.");
+      } finally {
+        roastBtn.disabled = false;
+        roastBtn.textContent = originalBtnText;
+      }
+    });
+
+    function showError(msg) {
+      if (formError) {
+        formError.textContent = msg;
+        formError.style.display = 'block';
+      }
+    }
+  </script>
+</body>
+</html>

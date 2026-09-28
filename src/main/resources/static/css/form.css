@@ -1,0 +1,183 @@
+/* form.css — profile.html only */
+.form-shell { padding-block: 1rem 4rem; }
+.form-shell h1 { font-size: var(--step-3); margin-bottom: 0.25rem; }
+.form-subtitle { font-size: var(--step-0); color: var(--ink-soft); margin-bottom: 1.5rem; }
+
+/* Role Tabs */
+.role-tabs { display: flex; flex-wrap: wrap; gap: 0.5rem; margin: 1rem 0 2rem; padding: 0; list-style: none; }
+.role-tabs a {
+  display: block; padding: 0.6em 1.2em; border: var(--line); background: var(--panel);
+  text-decoration: none; font-weight: 700; font-size: var(--step-0);
+  box-shadow: 2px 2px 0 var(--ink);
+  transition: transform 0.1s, box-shadow 0.1s, background 0.1s;
+}
+.role-tabs a:hover { background: var(--hit); transform: translate(-2px, -2px); box-shadow: 4px 4px 0 var(--ink); }
+
+/* Active tab styles via :has() */
+.form-shell:has(#sde:target) .role-tabs a[href="#sde"],
+.form-shell:has(#data-analyst:target) .role-tabs a[href="#data-analyst"],
+.form-shell:has(#fullstack:target) .role-tabs a[href="#fullstack"],
+.form-shell:has(#ai-engineer:target) .role-tabs a[href="#ai-engineer"],
+.form-shell:has(#ml-engineer:target) .role-tabs a[href="#ml-engineer"],
+.form-shell:has(#cloud-engineer:target) .role-tabs a[href="#cloud-engineer"] {
+  background: var(--hit);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+/* Pure-CSS role switching */
+.role-fields { display: none; scroll-margin-top: 1rem; }
+.role-fields:target { display: block; }
+.pick-hint { padding: 1rem 1.25rem; border: 3px dashed var(--ink); }
+.form-shell:has(.role-fields:target) .pick-hint { display: none; }
+.form-shell:not(:has(.role-fields:target)) .form-actions { display: none; }
+
+.role-header { margin-bottom: 1.5rem; }
+.role-header h2 { margin-bottom: 0.25rem; }
+.role-header p { margin: 0; color: var(--ink-soft); }
+
+/* Range Slider Cards */
+.slider-group {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.slider-card {
+  background: #fff;
+  border: var(--line);
+  box-shadow: 3px 3px 0 var(--ink);
+  padding: 1.1rem 1.25rem;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.slider-card:hover, .slider-card:focus-within {
+  transform: translate(-2px, -2px);
+  box-shadow: 5px 5px 0 var(--ink);
+}
+
+.slider-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.slider-header label {
+  font-family: var(--font-display);
+  font-size: var(--step-1);
+  letter-spacing: 0.03em;
+  margin: 0;
+  cursor: pointer;
+}
+
+.slider-badge {
+  font-family: var(--font-display);
+  font-size: var(--step-0);
+  background: var(--hit);
+  border: 2px solid var(--ink);
+  padding: 0.2em 0.6em;
+  box-shadow: 2px 2px 0 var(--ink);
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.25rem;
+}
+
+.slider-badge output {
+  font-size: 1.3rem;
+  line-height: 1;
+}
+
+.slider-badge span {
+  font-size: var(--step--1);
+  font-family: var(--font-body);
+  font-weight: 700;
+  color: var(--ink-soft);
+}
+
+/* Custom Comic/Brutalist Range Slider */
+input[type="range"].comic-slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 1.25rem;
+  background: #fffbe0;
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  outline: none;
+  cursor: pointer;
+  margin: 0.5rem 0 0.25rem;
+  box-sizing: border-box;
+}
+
+/* Chrome, Safari, Edge Thumb */
+input[type="range"].comic-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 1.75rem;
+  height: 2.25rem;
+  background: var(--hurt);
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: grab;
+  transition: transform 0.1s, background 0.1s;
+}
+
+input[type="range"].comic-slider::-webkit-slider-thumb:hover {
+  background: var(--hit);
+  transform: scale(1.08);
+}
+
+input[type="range"].comic-slider::-webkit-slider-thumb:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+/* Firefox Thumb */
+input[type="range"].comic-slider::-moz-range-thumb {
+  width: 1.75rem;
+  height: 2.25rem;
+  background: var(--hurt);
+  border: 3px solid var(--ink);
+  border-radius: 0;
+  box-shadow: 2px 2px 0 var(--ink);
+  cursor: grab;
+  transition: transform 0.1s, background 0.1s;
+}
+
+input[type="range"].comic-slider::-moz-range-thumb:hover {
+  background: var(--hit);
+  transform: scale(1.08);
+}
+
+input[type="range"].comic-slider::-moz-range-thumb:active {
+  cursor: grabbing;
+  transform: scale(0.95);
+  box-shadow: 0 0 0 var(--ink);
+}
+
+.slider-scale {
+  display: flex;
+  justify-content: space-between;
+  font-size: var(--step--1);
+  font-weight: 700;
+  color: var(--ink-soft);
+  margin-top: 0.35rem;
+}
+
+.form-actions { margin-top: 2rem; display: flex; gap: 1rem; flex-wrap: wrap; align-items: center; }
+
+.form-error {
+  margin-top: 1.5rem;
+  padding: 1rem 1.25rem;
+  background: var(--hurt);
+  color: #fff;
+  border: var(--line);
+  box-shadow: var(--shadow);
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: var(--step-0);
+}
