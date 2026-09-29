@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <!-- Ben-Day Halftone Pattern -->
+    <pattern id="bnd-dots" x="0" y="0" width="10" height="10" patternUnits="userSpaceOnUse">
+      <circle cx="2" cy="2" r="1.5" fill="#003554" opacity="0.35"/>
+      <circle cx="7" cy="7" r="1.5" fill="#003554" opacity="0.35"/>
+    </pattern>
+    <!-- Yellow Glow Gradient -->
+    <radialGradient id="sun-glow" cx="65%" cy="40%" r="45%">
+      <stop offset="0%" stop-color="#fff475"/>
+      <stop offset="40%" stop-color="#ffd000"/>
+      <stop offset="85%" stop-color="#f5a623"/>
+      <stop offset="100%" stop-color="#00a8e8" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Sky Base -->
+  <rect width="600" height="400" fill="#00a8e8"/>
+  <rect width="600" height="400" fill="url(#bnd-dots)"/>
+
+  <!-- Sunburst Rays radiating from Sun -->
+  <g opacity="0.25" fill="#ffe600">
+    <polygon points="390,160 0,0 60,0"/>
+    <polygon points="390,160 160,0 240,0"/>
+    <polygon points="390,160 340,0 420,0"/>
+    <polygon points="390,160 520,0 600,0"/>
+    <polygon points="390,160 600,60 600,120"/>
+    <polygon points="390,160 600,200 600,280"/>
+    <polygon points="390,160 0,100 0,160"/>
+    <polygon points="390,160 0,220 0,300"/>
+  </g>
+
+  <!-- Giant Glowing Comic Sun -->
+  <circle cx="390" cy="160" r="100" fill="url(#sun-glow)"/>
+  <circle cx="390" cy="160" r="75" fill="#ffdd00" stroke="#111" stroke-width="4"/>
+
+  <!-- Sun Ring Details & Halftone Circles -->
+  <circle cx="390" cy="160" r="60" fill="none" stroke="#111" stroke-width="2" stroke-dasharray="8 6"/>
+
+  <!-- Distant City Skyline (Silhouettes) -->
+  <g fill="#002b49" stroke="#111" stroke-width="2">
+    <!-- Back Buildings -->
+    <rect x="50" y="210" width="35" height="190"/>
+    <rect x="95" y="180" width="40" height="220"/>
+    <rect x="145" y="230" width="30" height="170"/>
+    <rect x="185" y="195" width="45" height="205"/>
+    <polygon points="207,160 195,195 220,195"/> <!-- spire -->
+    <rect x="240" y="240" width="35" height="160"/>
+    <rect x="285" y="170" width="45" height="230"/>
+    <rect x="340" y="220" width="30" height="180"/>
+    <rect x="440" y="185" width="35" height="215"/>
+    <polygon points="457,150 445,185 470,185"/> <!-- antenna -->
+    <rect x="485" y="225" width="40" height="175"/>
+    <rect x="535" y="190" width="50" height="210"/>
+  </g>
+
+  <!-- Midground City Skyline (Dark Navy with window dashes) -->
+  <g fill="#0b1b2b" stroke="#111" stroke-width="3">
+    <rect x="70" y="250" width="50" height="150"/>
+    <rect x="130" y="215" width="45" height="185"/>
+    <rect x="210" y="235" width="55" height="165"/>
+    <rect x="290" y="200" width="40" height="200"/>
+    <polygon points="310,165 300,200 320,200"/> <!-- spire -->
+    <rect x="420" y="230" width="50" height="170"/>
+    <rect x="490" y="205" width="45" height="195"/>
+    <polygon points="512,175 502,205 522,205"/>
+  </g>
+
+  <!-- Glowing Yellow Windows -->
+  <g fill="#ffdd00" opacity="0.8">
+    <rect x="80" y="260" width="6" height="8"/>
+    <rect x="95" y="260" width="6" height="8"/>
+    <rect x="80" y="280" width="6" height="8"/>
+    <rect x="95" y="280" width="6" height="8"/>
+    <rect x="140" y="230" width="8" height="12"/>
+    <rect x="155" y="230" width="8" height="12"/>
+    <rect x="140" y="255" width="8" height="12"/>
+    <rect x="155" y="255" width="8" height="12"/>
+    <rect x="220" y="250" width="7" height="10"/>
+    <rect x="235" y="250" width="7" height="10"/>
+    <rect x="220" y="270" width="7" height="10"/>
+    <rect x="235" y="270" width="7" height="10"/>
+    <rect x="435" y="245" width="6" height="10"/>
+    <rect x="450" y="245" width="6" height="10"/>
+    <rect x="505" y="220" width="6" height="10"/>
+    <rect x="520" y="220" width="6" height="10"/>
+  </g>
+
+  <!-- Comic Hero Character (Back View, Looking at City) -->
+  <g stroke="#111" stroke-width="4" stroke-linejoin="round">
+    <!-- Hair with Comic Highlights -->
+    <path d="M350,195 C345,175 365,155 385,150 C405,155 425,175 420,195 C410,185 390,185 385,190 C375,185 360,188 350,195 Z" fill="#111"/>
+    <path d="M375,160 C385,155 395,155 405,162" stroke="#ffdd00" stroke-width="3" fill="none"/>
+    
+    <!-- Neck -->
+    <rect x="375" y="190" width="20" height="20" fill="#f09873"/>
+    
+    <!-- Jacket / Hood / Shoulders -->
+    <path d="M320,270 L345,210 C360,205 410,205 425,210 L450,270 L460,400 L310,400 Z" fill="#003554"/>
+    
+    <!-- Backpack -->
+    <rect x="345" y="235" width="80" height="120" rx="20" fill="#051923" stroke="#111" stroke-width="4"/>
+    <!-- Backpack Straps & Details -->
+    <path d="M350,225 C340,250 340,300 345,340" stroke="#111" stroke-width="6" fill="none"/>
+    <path d="M420,225 C430,250 430,300 425,340" stroke="#111" stroke-width="6" fill="none"/>
+    <line x1="360" y1="280" x2="410" y2="280" stroke="#ffdd00" stroke-width="3"/>
+    <line x1="365" y1="310" x2="405" y2="310" stroke="#111" stroke-width="3"/>
+    
+    <!-- Jacket folds and ink hatching -->
+    <path d="M335,260 L345,290" stroke="#111" stroke-width="3"/>
+    <path d="M435,260 L425,290" stroke="#111" stroke-width="3"/>
+    <path d="M325,310 L335,340" stroke="#111" stroke-width="3"/>
+    <path d="M445,310 L435,340" stroke="#111" stroke-width="3"/>
+  </g>
+
+  <!-- Speed Lines / Comic Energy around hero -->
+  <g stroke="#111" stroke-width="2" opacity="0.6">
+    <line x1="280" y1="240" x2="260" y2="245"/>
+    <line x1="290" y1="270" x2="270" y2="280"/>
+    <line x1="480" y1="240" x2="500" y2="245"/>
+    <line x1="475" y1="270" x2="495" y2="280"/>
+  </g>
+
+  <!-- Comic Outer Border -->
+  <rect x="2" y="2" width="596" height="396" fill="none" stroke="#111" stroke-width="6"/>
+</svg>

@@ -1,52 +1,241 @@
-/* result.css — result.html only */
-.result { padding-block: 1rem 4rem; }
-.result h1 { font-size: var(--step-3); }
+/* ==========================================================================
+   result.css — Comic Book Theme for result.html (The Damage Report)
+   ========================================================================== */
 
+.result {
+  padding: 2rem 0 4rem;
+}
+
+.result h1 {
+  font-size: clamp(2.25rem, 6vw, 3.5rem);
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* Score Header & Boss Fight HP Bar */
 .score-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.5rem;
+  gap: 2rem;
   margin-bottom: 2.5rem;
+  background: #ffffff;
+  border: var(--line-thick);
+  box-shadow: var(--shadow);
+  padding: 1.5rem 2rem;
 }
-.score { flex: 1; margin-bottom: 0; }
-.score__number { font-family: var(--font-display); font-size: var(--step-4); line-height: 1; letter-spacing: 0.03em; margin: 0 0 0.75rem; }
+
+.score {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+.score__number {
+  font-family: var(--font-display);
+  font-size: clamp(3.5rem, 9vw, 5.5rem);
+  line-height: 0.95;
+  letter-spacing: 0.04em;
+  margin: 0 0 0.5rem;
+  color: var(--comic-red);
+  text-shadow: 4px 4px 0 var(--ink), -2px -2px 0 var(--ink), 2px -2px 0 var(--ink), -2px 2px 0 var(--ink);
+}
+
+.hp__label {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.65rem;
+}
+
+#role-badge {
+  background: var(--comic-yellow);
+  color: var(--ink);
+  padding: 0.2em 0.65em;
+  border: var(--line-thin);
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-1.5deg);
+  font-size: 1.1rem;
+}
 
 .score-emoji-wrap {
   flex-shrink: 0;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: #fff8d6;
+  border: var(--line);
+  box-shadow: var(--shadow-sm);
+  padding: 1rem 1.25rem;
+  position: relative;
 }
+
 .score-emoji {
-  width: 140px;
-  height: 140px;
+  width: 130px;
+  height: 130px;
   object-fit: contain;
   filter: drop-shadow(4px 4px 0 var(--ink));
   animation: beg-float 3s ease-in-out infinite alternate;
 }
+
 @keyframes beg-float {
   from { transform: translateY(0); }
   to { transform: translateY(-8px); }
 }
 
-@media (max-width: 600px) {
+.score-emoji-caption {
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.05em;
+  background: var(--comic-red);
+  color: #fff;
+  padding: 0.2em 0.5em;
+  border: 2px solid var(--ink);
+  margin-top: 0.5rem;
+  transform: rotate(2deg);
+}
+
+/* The Roast Section (Comic Speech Balloon) */
+.roast {
+  margin-bottom: 3rem;
+}
+
+.roast-panel {
+  background: #fffef5;
+  border: var(--line-thick);
+  box-shadow: var(--shadow-lg);
+  padding: 2rem 2.25rem;
+  position: relative;
+}
+
+.roast-panel-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.roast p {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 4vw, 1.85rem);
+  line-height: 1.25;
+  letter-spacing: 0.03em;
+  color: var(--ink);
+  margin: 0;
+  position: relative;
+  z-index: 2;
+  overflow-wrap: break-word;
+}
+
+.roast p::before {
+  content: "“";
+  font-size: 3.5rem;
+  line-height: 0;
+  position: relative;
+  top: 0.5rem;
+  margin-right: 0.2rem;
+  color: var(--comic-red);
+}
+
+.roast p::after {
+  content: "”";
+  font-size: 3.5rem;
+  line-height: 0;
+  position: relative;
+  top: 0.5rem;
+  margin-left: 0.2rem;
+  color: var(--comic-red);
+}
+
+/* Subcategory Breakdown Grid */
+.breakdown-section {
+  margin-bottom: 3rem;
+}
+
+.breakdown-section h2 {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+
+.breakdown {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(17rem, 1fr));
+}
+
+.breakdown .panel {
+  background: #ffffff;
+  border: var(--line-thick);
+  box-shadow: var(--shadow);
+  padding: 1.25rem 1.35rem;
+}
+
+.breakdown h3 {
+  font-size: 1.45rem;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.25rem;
+}
+
+.breakdown p.muted {
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 0.95rem;
+  margin-bottom: 0.75rem;
+  color: var(--ink-soft);
+}
+
+.breakdown .hp {
+  height: 1.75rem;
+  margin-top: 0.5rem;
+  border-width: 2.5px;
+}
+
+.result-actions {
+  display: flex;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Responsive Rules for Mobile */
+@media (max-width: 680px) {
   .score-header {
     flex-direction: column-reverse;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
+    padding: 1.25rem 1rem;
+  }
+  .score {
+    width: 100%;
+    text-align: center;
   }
   .score-emoji {
-    width: 110px;
-    height: 110px;
+    width: 105px;
+    height: 105px;
   }
 }
 
-.roast { margin-bottom: 2.5rem; }
-.roast p { font-size: var(--step-1); }
-
-.breakdown { display: grid; gap: 1.25rem; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); margin-bottom: 2.5rem; }
-.breakdown h3 { margin-bottom: 0.25rem; }
-.breakdown .hp { height: 1.5rem; margin-top: 0.5rem; }
-
-.result-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+@media (max-width: 480px) {
+  .result {
+    padding-block: 1rem 2.5rem;
+  }
+  .result h1 {
+    font-size: clamp(2rem, 8vw, var(--step-3));
+  }
+  .roast-panel {
+    padding: 1.5rem 1.25rem;
+  }
+  .roast p {
+    font-size: 1.25rem;
+  }
+  .breakdown {
+    grid-template-columns: 1fr;
+  }
+  .result-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
+}

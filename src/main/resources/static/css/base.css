@@ -1,28 +1,68 @@
-/* base.css — design tokens, reset, typography. Loaded on every page. */
+/* ==========================================================================
+   base.css — Comic Book Theme Design Tokens, Reset & Page Frame
+   Inspired by classic comic dashboards & graphic novels
+   ========================================================================== */
+
 :root {
-  --bg: #e8d8b8;
-  --panel: #ffd93d;
-  --ink: #1b1946;
-  --ink-soft: #55537f;
-  --hurt: #e8325f;      /* damage / roast */
-  --heal: #23b58a;      /* health / good news */
-  --hit: #ffd93d;       /* highlight */
-  --line: 3px solid var(--ink);
+  /* Canvas & Outer Reader Desk */
+  --bg-desk: #181926;
+  --paper: #fbf7ee;
+  --paper-panel: #ffffff;
+  
+  /* Ink & Typography Colors */
+  --ink: #111116;
+  --ink-soft: #4e4c6d;
+  
+  /* Vibrant Comic Palette */
+  --comic-yellow: #fec81a;
+  --comic-yellow-light: #fff275;
+  --comic-cyan: #00b4d8;
+  --comic-cyan-dark: #0077b6;
+  --comic-red: #ef233c;
+  --comic-red-dark: #b8001f;
+  --comic-green: #06d6a0;
+  --comic-green-dark: #028090;
+  --comic-purple: #7b2cbf;
+  --comic-purple-dark: #4a0e78;
+  --comic-orange: #ff6b35;
+  
+  /* Semantic Aliases for compatibility */
+  --panel: var(--comic-yellow);
+  --hurt: var(--comic-red);
+  --heal: var(--comic-green);
+  --hit: var(--comic-yellow);
+  
+  /* Comic Borders & Solid Drop Shadows */
+  --line-thin: 2px solid var(--ink);
+  --line: 3.5px solid var(--ink);
+  --line-thick: 5px solid var(--ink);
+  
+  --shadow-sm: 3px 3px 0 var(--ink);
   --shadow: 5px 5px 0 var(--ink);
-
-  --font-display: "Bangers", "Comic Sans MS", Impact, cursive, sans-serif;
+  --shadow-lg: 8px 8px 0 var(--ink);
+  --shadow-xl: 12px 12px 0 var(--ink);
+  
+  /* Typography */
+  --font-display: "Bangers", Impact, "Comic Sans MS", cursive, sans-serif;
   --font-body: "Comic Neue", "Comic Sans MS", cursive, sans-serif;
-
-  --step--1: 0.875rem;
-  --step-0: 1rem;
-  --step-1: 2.25rem;
-  --step-2: 1.75rem;
-  --step-3: clamp(2.25rem, 5vw, 3.5rem);
-  --step-4: clamp(3rem, 9vw, 6rem);
+  
+  --step--1: 0.9rem;
+  --step-0: 1.05rem;
+  --step-1: 1.5rem;
+  --step-2: 1.85rem;
+  --step-3: clamp(2rem, 5vw, 3.25rem);
+  --step-4: clamp(2.5rem, 8vw, 4.5rem);
 }
 
-*, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--bg-desk);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
@@ -31,60 +71,185 @@ html { scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
-  border: 6px solid var(--ink);
   color: var(--ink);
   font-family: var(--font-body);
   font-size: var(--step-0);
-  line-height: 1.6;
-  background-color: var(--bg);
+  line-height: 1.55;
+  background-color: var(--bg-desk);
   background-image: 
-    /* Vignette shading around edges */
-    radial-gradient(
-      ellipse at center,
-      rgba(247, 241, 227, 0.4) 0%,
-      rgba(214, 187, 142, 0.4) 55%,
-      rgba(153, 117, 74, 0.75) 100%
-    ),
-    /* Irregular stains / aged discoloration */
-    radial-gradient(
-      circle at 20% 30%,
-      rgba(180, 140, 90, 0.3) 0%,
-      transparent 45%
-    ),
-    radial-gradient(
-      circle at 80% 75%,
-      rgba(160, 115, 65, 0.35) 0%,
-      transparent 50%
-    ),
-    /* Procedural paper fiber & noise texture via inline SVG */
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 600 600' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0.45  0 0 0 0 0.35  0 0 0 0 0.22  0 0 0 0 0.22 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-  background-repeat: no-repeat, no-repeat, no-repeat, repeat;
-  background-size: cover, cover, cover, 300px 300px;
-  background-attachment: fixed;
-  box-shadow: inset 0 0 100px rgba(78, 48, 20, 0.45);
+    radial-gradient(circle, rgba(255, 255, 255, 0.08) 1.5px, transparent 1.5px);
+  background-size: 24px 24px;
+}
+
+/* Authentic Comic Book Page Spread Container */
+.comic-page {
+  max-width: 1220px;
+  margin: 1.75rem auto 3rem;
+  background-color: var(--paper);
+  border: var(--line-thick);
+  box-shadow: var(--shadow-xl);
+  position: relative;
+  background-image:
+    radial-gradient(circle, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 10px 10px;
+}
+
+@media (max-width: 1260px) {
+  .comic-page {
+    margin: 1rem 0.75rem 2rem;
+    border-width: 4px;
+    box-shadow: var(--shadow-lg);
+  }
 }
 
 @media (max-width: 600px) {
-  body { border-width: 4px; }
+  .comic-page {
+    margin: 0;
+    border-width: 3.5px 0;
+    box-shadow: none;
+  }
 }
 
-h1, h2, h3 {
+/* Headings */
+h1, h2, h3, h4 {
   font-family: var(--font-display);
-  line-height: 1.1;
+  line-height: 1.05;
   letter-spacing: 0.04em;
   margin: 0 0 0.5em;
+  color: var(--ink);
+  text-transform: uppercase;
 }
+
 h1 { font-size: var(--step-4); }
 h2 { font-size: var(--step-3); }
-h3 { font-size: var(--step-1); }
-p  { margin: 0 0 1em; max-width: 62ch; }
-a  { color: inherit; }
+h3 { font-size: var(--step-2); }
+h4 { font-size: var(--step-1); }
 
-:focus-visible { outline: 4px solid var(--hurt); outline-offset: 3px; }
+p {
+  margin: 0 0 1em;
+  max-width: 65ch;
+}
 
-.wrap { width: min(100% - 2rem, 68rem); margin-inline: auto; }
-.muted { color: var(--ink-soft); }
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+:focus-visible {
+  outline: 4px solid var(--comic-red);
+  outline-offset: 3px;
+}
+
+.wrap {
+  width: min(100% - 2.5rem, 72rem);
+  margin-inline: auto;
+}
+
+@media (max-width: 480px) {
+  .wrap {
+    width: min(100% - 1.25rem, 72rem);
+  }
+}
+
+.muted {
+  color: var(--ink-soft);
+}
+
 .visually-hidden {
-  position: absolute; width: 1px; height: 1px; overflow: hidden;
-  clip: rect(0 0 0 0); white-space: nowrap;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ==========================================================================
+   Ben-Day Halftone Dot Patterns & Comic Textures
+   ========================================================================== */
+
+.halftone-cyan {
+  background-color: var(--comic-cyan);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.22) 20%, transparent 21%);
+  background-size: 7px 7px;
+}
+
+.halftone-yellow {
+  background-color: var(--comic-yellow);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.16) 18%, transparent 19%);
+  background-size: 7px 7px;
+}
+
+.halftone-red {
+  background-color: var(--comic-red);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.25) 20%, transparent 21%);
+  background-size: 7px 7px;
+}
+
+.halftone-purple {
+  background-color: var(--comic-purple);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.25) 20%, transparent 21%);
+  background-size: 7px 7px;
+}
+
+.halftone-green {
+  background-color: var(--comic-green);
+  background-image: radial-gradient(circle, rgba(0, 0, 0, 0.22) 20%, transparent 21%);
+  background-size: 7px 7px;
+}
+
+.halftone-dark {
+  background-color: #171b26;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.12) 16%, transparent 17%);
+  background-size: 8px 8px;
+}
+
+/* Comic Narrator Caption Box (e.g., "YOUR DATA. YOUR CONTROL.") */
+.comic-tag {
+  display: inline-block;
+  font-family: var(--font-display);
+  font-size: 0.95rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  background: var(--comic-yellow);
+  color: var(--ink);
+  padding: 0.35em 0.85em;
+  border: var(--line);
+  box-shadow: var(--shadow-sm);
+  transform: rotate(-1.5deg);
+  margin-bottom: 0.75rem;
+  font-weight: 700;
+}
+
+.comic-tag--cyan {
+  background: var(--comic-cyan);
+  color: #fff;
+  transform: rotate(1deg);
+}
+
+.comic-tag--red {
+  background: var(--comic-red);
+  color: #fff;
+  transform: rotate(-1deg);
+}
+
+.comic-tag--green {
+  background: var(--comic-green);
+  color: var(--ink);
+  transform: rotate(1.5deg);
+}
+
+.comic-tag--purple {
+  background: var(--comic-purple);
+  color: #fff;
+  transform: rotate(-1.5deg);
+}
+
+/* Comic Panel Base */
+.comic-panel {
+  background: var(--paper-panel);
+  border: var(--line);
+  box-shadow: var(--shadow);
+  position: relative;
+  overflow: hidden;
 }

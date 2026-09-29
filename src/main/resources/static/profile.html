@@ -13,16 +13,25 @@
   <link rel="icon" type="image/png" href="images/emoji-beg.png">
 </head>
 <body>
-  <header class="site-header">
-    <div class="wrap">
-      <a class="logo" href="index.html"><span>Skill</span> Issue</a>
-      <nav aria-label="Main"><a href="index.html#roles">Roles</a><a href="index.html#how">How it works</a></nav>
-    </div>
-  </header>
+  <div class="comic-page">
+    <header class="site-header">
+      <div class="wrap">
+        <a class="logo-group" href="index.html">
+          <div class="logo"><span>SKILL</span> ISSUE</div>
+          <div class="logo-badge">ISSUE #404</div>
+        </a>
+        <nav aria-label="Main">
+          <a href="index.html#roles">ROLES</a>
+          <a href="index.html#how">HOW IT WORKS</a>
+        </nav>
+        <a class="header-cta" href="index.html">&larr; BACK TO ROLES</a>
+      </div>
+    </header>
 
-  <main class="form-shell wrap">
-    <h1>Rate your skill level</h1>
-    <p class="form-subtitle">Slide each bar from 1 to 10 based on your real understanding. The roast will know if you're capping.</p>
+    <main class="form-shell wrap">
+      <span class="comic-tag">CHAPTER 2: CONFESS YOUR SINS</span>
+      <h1>RATE YOUR SKILL LEVEL</h1>
+      <p class="form-subtitle">Slide each bar from 1 to 10 based on your real understanding. The roast engine knows if you're capping.</p>
 
     <ul class="role-tabs" aria-label="Choose a role">
       <li><a href="#sde">SDE</a></li>
@@ -366,8 +375,8 @@
       <div id="form-error" class="form-error" style="display: none;" role="alert"></div>
 
       <div class="form-actions">
-        <button class="btn" id="roast-btn" type="submit">Roast me</button>
-        <a class="btn btn--quiet" href="index.html">Back</a>
+        <button class="btn btn--red" id="roast-btn" type="submit">ROAST ME &rarr;</button>
+        <a class="btn btn--quiet" href="index.html">&larr; BACK</a>
       </div>
     </form>
   </main>
@@ -392,26 +401,29 @@
     const formError = document.getElementById('form-error');
 
     function syncActiveRole() {
-      const hash = window.location.hash.replace('#', '') || 'sde';
-      let matched = false;
+  if (!window.location.hash) {
+    window.location.hash = 'sde';
+    return;
+  }
 
-      roleSections.forEach(section => {
-        const isMatch = section.id === hash;
-        if (isMatch) matched = true;
-        // Enable inputs only for active section
-        section.querySelectorAll('input').forEach(input => {
-          input.disabled = !isMatch;
-        });
-        if (isMatch) {
-          selectedRoleInput.value = section.dataset.roleName || section.id;
-        }
-      });
+  const hash = window.location.hash.replace('#', '');
+  let matched = false;
 
-      if (!matched && roleSections.length > 0) {
-        // default to first role
-        window.location.hash = 'sde';
-      }
+  roleSections.forEach(section => {
+    const isMatch = section.id === hash;
+    if (isMatch) matched = true;
+    section.querySelectorAll('input').forEach(input => {
+      input.disabled = !isMatch;
+    });
+    if (isMatch) {
+      selectedRoleInput.value = section.dataset.roleName || section.id;
     }
+  });
+
+  if (!matched && roleSections.length > 0) {
+    window.location.hash = 'sde';
+  }
+}
 
     window.addEventListener('hashchange', syncActiveRole);
     syncActiveRole();
@@ -494,5 +506,12 @@
       }
     }
   </script>
+
+  <footer class="comic-footer">
+    <div class="wrap">
+      <div>SKILL ISSUE COMICS GROUP &bull; VOL. 1 &bull; ISSUE #404</div>
+    </div>
+  </footer>
+</div>
 </body>
 </html>
