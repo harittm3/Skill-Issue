@@ -45,8 +45,8 @@
 ### 1 — Clone the repo
 
 ```bash
-git clone https://github.com/<your-username>/roastapp.git
-cd roastapp
+git clone https://github.com/harittm3/Skill-Issue.git
+cd Skill-Issue
 ```
 
 ### 2 — Set the required environment variables
@@ -96,6 +96,8 @@ Compute a hiring-probability score and generate a roast for the given role and s
 { "error": "Too many requests. Please try again later." }
 ```
 
+> The client IP is resolved from the `X-Forwarded-For` header when present, falling back to the direct connection address otherwise. If you deploy this behind a reverse proxy, make sure the proxy sets that header to the real client IP itself (overwriting anything a client sends) — otherwise the limiter can be trivially bypassed by forging the header.
+
 ---
 
 #### Request body
@@ -136,7 +138,7 @@ All subcategory keys for the chosen role must be present. Ratings outside 1–10
 
 ```json
 {
-  "percentage": 63,
+  "percentage": 56,
   "roast": "You call yourself an SDE but...",
   "role": "SDE",
   "breakdown": {
@@ -234,7 +236,7 @@ src/main/java/com/skillissue/roastapp/
 │   └── Subcategory.java              # Record: name + weight
 │
 ├── filter/
-│   └── RateLimitFilter.java          # Servlet filter — per-IP rate limiting on /api/*
+│   └── RateLimitFilter.java          # Servlet filter — per-IP rate limiting on POST /api/*
 │
 └── exception/
     ├── InvalidRoleException.java     # Thrown for unknown role strings
@@ -255,4 +257,4 @@ src/main/resources/
 
 ## Notes
 
-This is a **personal / portfolio project** built for fun. It is not production software — no auth, no persistent storage, no multi-instance deployment. The rate limiter is in-process (per JVM instance) and resets on restart. Run it locally and don't expose it to the public internet without at minimum securing your API keys via proper secrets management.
+This is a **personal / portfolio project** built for fun. It is not production software — no auth, no persistent storage, no multi-instance deployment. The rate limiter is in-process (per JVM instance) and resets on restart. Run it locally and don't expose it to the public internet without at minimum securing your API keys via proper secrets management, and putting a reverse proxy in front that sets `X-Forwarded-For` correctly (see the rate limit note above).
