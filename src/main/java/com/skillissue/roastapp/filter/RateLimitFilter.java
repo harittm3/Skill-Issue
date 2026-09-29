@@ -1,13 +1,18 @@
 package com.skillissue.roastapp.filter;
 
-import io.github.resilience4j.ratelimiter.RateLimiter;
-import io.github.resilience4j.ratelimiter.RateLimiterRegistry;
-import jakarta.servlet.*;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+
 import org.springframework.stereotype.Component;
 
-import java.io.IOException;
+import io.github.resilience4j.ratelimiter.RateLimiter;
+import io.github.resilience4j.ratelimiter.RateLimiterRegistry;
+import jakarta.servlet.Filter;
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.ServletRequest;
+import jakarta.servlet.ServletResponse;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class RateLimitFilter implements Filter {
@@ -37,7 +42,7 @@ public class RateLimitFilter implements Filter {
             return;
         }
 
-        String clientIp = httpRequest.getRemoteAddr();
+        String clientIp = resolveClientIp(httpRequest);
 
         RateLimiter rateLimiter = rateLimiterRegistry.rateLimiter(clientIp);
 
@@ -48,5 +53,12 @@ public class RateLimitFilter implements Filter {
             httpResponse.setContentType("application/json");
             httpResponse.getWriter().write("{\"error\": \"Too many requests. Please try again later.\"}");
         }
+    }
+        private String resolveClientIp(HttpServletRequest request) {
+        String forwardedFor = request.getHeader("X-Forwarded-For");
+        if (forwardedFor != null && !forwardedFor.isBlank()) {
+            return forwardedFor.split(",")[0].trim();
+        }
+        return request.getRemoteAddr();
     }
 }
